@@ -1,20 +1,17 @@
-name: Pull Request Workflow
+name: Auto-Assign Reviewers and Assignees
 
 on:
   pull_request:
     types: [opened]
 
 jobs:
-  assign-approvers-and-reviewers:
+  assign:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Assign approver
-        uses: peter-evans/create-pull-request@v3.6.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          assignee: username_of_approver
-      - name: Assign reviewer
-        uses: peter-evans/create-pull-request@v3.6.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          assignee: username_of_reviewer
+    - name: Assign Reviewers and Assignees
+      uses: actions/bin/assign@v1
+      with:
+        assignee: Rahi776
+        reviewers: Rahi776, octo-org/tools-team
+
